@@ -1,0 +1,22 @@
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "Release tag"
+        required: true
+        default: v.0.9.10.enhanced.x
+
+name: Build Image
+
+jobs:
+  push_releases:
+    name: Push Releases
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@master
+      - name: Upload to GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: README.md
+          tag: ${{ github.event.inputs.release_tag }}
