@@ -20,7 +20,7 @@ jobs:
           echo "# ${{ github.event.inputs.release_tag }}" >> body.md
           echo test >> body.md
           sha256=`sha256sum README.md`
-          echo -n $sha256 > body.md
+          echo -n $sha256 >> body.md
           cat body.md
       - name: Upload to GitHub release
         uses: ncipollo/release-action@v1
